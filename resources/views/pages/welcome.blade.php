@@ -1,7 +1,8 @@
 @extends('main')
 @section('title','| Homepage')
 @section('content')
-<div class="row">
+
+<div class="row-mt-200">
     <div class="col-md-12">
     <div class="jumbotron">
         <h1 class="display-4">Welcom to my blog</h1>
