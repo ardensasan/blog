@@ -13,8 +13,7 @@
             </div>
             <div class="form-group">
               <label for="body">Post Body:</label>
-              <textarea name="body" cols="30" rows="10" class="form-control">
-            </textarea>
+              <textarea name="body" cols="30" rows="10" class="form-control"></textarea>
             </div>
             <button type="submit" class="btn btn-success btn-block btn-lg">Create Post</button>
           </form>
