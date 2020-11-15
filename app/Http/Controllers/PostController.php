@@ -24,7 +24,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        return view('posts/create');
     }
 
     /**
@@ -55,7 +55,8 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        return view('posts.show');
+        $post = Post::find($id);
+        return view('posts/show')->with('post', $post);
     }
 
     /**
@@ -66,7 +67,7 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        return "Edit Controller";
     }
 
     /**
@@ -89,6 +90,8 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // $post = Post::find($id);
+        // $post->delete();
+        return redirect('/');
     }
 }
