@@ -7,6 +7,7 @@
     @include('partials._nav')
         <div class="container">
                 @yield('content')
+            <hr>
         </div>
     @include('partials._javascript')
     </body>
