@@ -24,12 +24,15 @@
                         <a href="{{ route('posts.edit',$post->id) }}" class="btn btn-primary btn-block">Edit</a>
                     </div>
                     <div class="col-sm-6">
-                        <a href="{{ route('posts.destroy',$post->id) }}" class="btn btn-danger     btn-block">Delete</a>
+                        <form action="{{ route('posts.destroy',$post->id) }}" method="POST">
+                            @method('DELETE')
+                            @csrf
+                            <button type="submit" class="btn btn-danger btn-block">Delete</button>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 @stop

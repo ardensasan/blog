@@ -89,7 +89,7 @@ class PostController extends Controller
         $post->title = $request->input('title');
         $post->body = $request->input('body');
         $post->save();
-        session()->flash('success' , 'The blog post was succesfully saved');
+        session()->flash('success' , 'The blog post was succesfully updated');
         return redirect()->route('posts.show', $post->id);
     }
 
@@ -101,8 +101,9 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        // $post = Post::find($id);
-        // $post->delete();
-        return redirect('/');
+        $post = Post::find($id);
+        $post->delete();
+        session()->flash('success' , 'The post was succesfully deleted');
+        return redirect()->route('posts.index');
     }
 }
