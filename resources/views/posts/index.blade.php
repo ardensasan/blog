@@ -36,6 +36,10 @@
                 @endforeach
             </tbody>
         </table>
+        <div class="text-center">
+            {!! $posts->links() !!}
+            Page {{$posts->currentPage()}} of {{$posts->lastPage()}}
+        </div>
     </div>
 </div>
 @stop

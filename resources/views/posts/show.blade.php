@@ -31,6 +31,11 @@
                         </form>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <a href="{{route('posts.index')}}"style="margin-top: 20px" class="btn btn-secondary btn-block">Show All Posts</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
