@@ -4,11 +4,14 @@
 <br>
 <div class="row">
     <div class="col-md-8">
-        <form action="{{ route('posts.update',$post->id) }}">
+        <form action="{{ route('posts.update',$post->id) }}" method="POST">
+            @method('PUT')
+            @csrf
             <label for="title"><strong>Title:</strong></label>
             <input type="text" name="title" value="{{$post->title}}" class="form-control">
             <label for="body" style="margin-top: 30px"><strong>Body:</strong></label>
-            <textarea name="" id="" name="body" cols="30" rows="10" class="form-control">{{$post->body}}</textarea>
+            <textarea name="body" cols="30" rows="10" class="form-control">{{$post->body}}</textarea>
+            <input type="submit" id="submit-form" style="visibility: hidden;"/>
         </form>
     </div>
     <div class="col-md-4">
@@ -28,7 +31,7 @@
                         <a href="{{ route('posts.show',$post->id) }}" class="btn btn-danger btn-block">Cancel</a>
                     </div>
                     <div class="col-sm-6">
-                        <a href="{{ route('posts.update',$post->id) }}" class="btn btn-success btn-block">Save Changes</a>
+                        <label for="submit-form"class="btn btn-success btn-block" tabindex="0">Save Changes</label></a>
                     </div>
                 </div>
             </div>

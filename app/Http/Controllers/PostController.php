@@ -44,7 +44,7 @@ class PostController extends Controller
         $post->title = $request->title;
         $post->body = $request->body;
         $post->save();
-        session()->flash('success' , 'The blog post was succesfully saved');
+        session()->flash('success' , 'The blog post was succesfully created');
         return redirect()->route('posts.show', $post->id);
     }
 
@@ -81,7 +81,16 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, array(
+            'title' => 'required|max:255',
+            'body' =>'required'
+        ));
+        $post = Post::find($id);
+        $post->title = $request->input('title');
+        $post->body = $request->input('body');
+        $post->save();
+        session()->flash('success' , 'The blog post was succesfully saved');
+        return redirect()->route('posts.show', $post->id);
     }
 
     /**
