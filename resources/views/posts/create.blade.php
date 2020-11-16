@@ -9,11 +9,15 @@
             @csrf
             <div class="form-group">
               <label for="title">Title:</label>
-              <input type="text" class="form-control" name="title">
+              <input type="text" class="form-control" name="title" required maxlength="255">
             </div>
             <div class="form-group">
+                <label for="slug">Slug:</label>
+                <input type="text" class="form-control" name="slug" required minlength="5" maxlength="255">
+              </div>
+            <div class="form-group">
               <label for="body">Post Body:</label>
-              <textarea name="body" cols="30" rows="10" class="form-control"></textarea>
+              <textarea name="body" cols="30" rows="10" class="form-control" required></textarea>
             </div>
             <button type="submit" class="btn btn-success btn-block btn-lg">Create Post</button>
           </form>

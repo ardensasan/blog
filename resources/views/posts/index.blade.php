@@ -1,7 +1,7 @@
 @extends('main')
 @section('title', "| All Posts")
 @section('content')
-<div class="row" style="margin-top: 50px">
+<div class="row" style="margin-top: 30px">
     <div class="col-md-9">
         <h1>All Posts</h1>
     </div>

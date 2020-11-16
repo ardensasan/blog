@@ -11,6 +11,10 @@
         <div class="card bg-light">
             <div class="card-body">
                 <dl class="dl-horizontal">
+                    <dt>URL: </dt>
+                    <dd><a href="{{route('blog.single',$post->slug)}}">{{url('blog/'.$post->slug)}}</a></dd>
+                </dl>
+                <dl class="dl-horizontal">
                     <dt>Created At: </dt>
                     <dd>{{date('M j, Y h:i a',strtotime($post->created_at))}}</dd>
                 </dl>

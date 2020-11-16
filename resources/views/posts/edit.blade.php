@@ -9,8 +9,13 @@
             @csrf
             <label for="title"><strong>Title:</strong></label>
             <input type="text" name="title" value="{{$post->title}}" class="form-control">
-            <label for="body" style="margin-top: 30px"><strong>Body:</strong></label>
+
+            <label for="slug" style="margin-top: 15px"><strong>Slug:</strong></label>
+            <input type="text" name="slug" value="{{$post->slug}}" class="form-control">
+
+            <label for="body" style="margin-top: 15px"><strong>Body:</strong></label>
             <textarea name="body" cols="30" rows="10" class="form-control">{{$post->body}}</textarea>
+
             <input type="submit" id="submit-form" style="visibility: hidden;"/>
         </form>
     </div>
