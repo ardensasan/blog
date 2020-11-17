@@ -8,6 +8,10 @@ use App\Models\Post;
 
 class PostController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -120,4 +124,5 @@ class PostController extends Controller
         session()->flash('success' , 'The post was succesfully deleted');
         return redirect()->route('posts.index');
     }
+
 }

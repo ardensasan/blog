@@ -3,7 +3,7 @@
 @section('content')
 <div class="row" style="margin-top: 30px">
     <div class="col-md-6" style="left: 25%;">
-        <form action="">
+        <form action="{{route('register.store')}}" method="POST">
             @csrf
             <label for="name">Name: </label>
             <input type="text" name="name" class="form-control">

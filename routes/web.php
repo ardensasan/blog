@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\RegistrationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,8 +21,11 @@ Route::get('blog/{slug}', [BlogController::class, 'getSingle'])->where('slug','[
 Route::get('blog', [BlogController::class, 'getIndex'])->name('blog.index');
 Route::get('contact', [PagesController::class, 'getContact']);
 Route::get('about',[PagesController::class, 'getAbout']);
-Route::get('/',[PagesController::class, 'getIndex']);
-Route::view('/auth/login','/auth/login');
-Route::view('/auth/register','/auth/register');
+Route::get('/',[PagesController::class, 'getIndex'])->name('index');
+Route::get('register',[RegistrationController::class,'create'])->name('register.create');
+Route::post('register',[RegistrationController::class,'store'])->name('register.store');
+Route::get('logout',[LoginController::class,'getLogout'])->name('logout');
+Route::get('login',[LoginController::class,'getLogin'])->name('login');
+Route::post('login',[LoginController::class,'authenticate'])->name('authenticate');
 Route::resource('posts', PostController::class);
 
