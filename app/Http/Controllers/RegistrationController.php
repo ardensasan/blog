@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\Auth;
 
 class RegistrationController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('guest');
+    }
+
     public function create(){
         return view('registration.register');
     }
@@ -16,7 +21,7 @@ class RegistrationController extends Controller
         $this->validate($request, array(
             'name' => 'required|max:255',
             'email' => 'required|unique:users',
-            'password' =>'required|confirmed|min:6'
+            'password' =>'required|min:8|confirmed'
         ));
         $user = new User;
         $user->name = $request->name;
@@ -25,10 +30,5 @@ class RegistrationController extends Controller
         $user->save();
         Auth::login($user);
         return redirect('/');
-    }
-
-    public function __construct()
-    {
-        $this->middleware('guest');
     }
 }

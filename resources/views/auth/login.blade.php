@@ -14,6 +14,7 @@
             <br>
             <input type="submit" class="btn btn-primary btn-block" value="Login">
         </form>
+        <a href="{{route('password.request')}}">Forgot Password</a>
     </div>
 </div>
 @stop
