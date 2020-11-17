@@ -20,5 +20,7 @@ Route::get('blog', [BlogController::class, 'getIndex'])->name('blog.index');
 Route::get('contact', [PagesController::class, 'getContact']);
 Route::get('about',[PagesController::class, 'getAbout']);
 Route::get('/',[PagesController::class, 'getIndex']);
+Route::view('/auth/login','/auth/login');
+Route::view('/auth/register','/auth/register');
 Route::resource('posts', PostController::class);
 

@@ -14,7 +14,7 @@
     </div>
 </div><!-- end of header row -->
 <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-8" style="margin-left: 15px">
         @foreach($posts as $post)
         <div class="post">
             <h3>{{$post->title}}</h3>
