@@ -10,18 +10,19 @@
         <li class="nav-item {{Request::is('about') ? "active":""}}">  <a class="nav-link" href="/about">About</a></li>
         <li class="nav-item {{Request::is('contact') ? "active":""}}"><a class="nav-link" href="/contact">Contact</a></li>
       </ul>
+      @if(Auth::check())
       <ul class="navbar-nav navbar-right">
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              My Account
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="{{route('posts.index')}}">Posts</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="{{route('logout')}}">Logout</a>
-            </div>
-          </li>
-      </ul>
+          <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> My Account</a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="{{route('posts.index')}}">Posts</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="{{route('logout')}}">Logout</a>          </li>
+                </div>
+            </li>
+        </ul>
+        @else
+        <a href="{{route('login')}}" class="btn btn-primary">Login</a>
+        @endif
     </div>
-  </nav>
+</nav>
