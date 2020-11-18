@@ -14,7 +14,13 @@
             <div class="form-group">
                 <label for="slug">Slug:</label>
                 <input type="text" class="form-control" name="slug" required minlength="5" maxlength="255">
-              </div>
+            </div>
+            <label for="category_id">Category</label>
+            <select name="category_id" id="" class="form-control">
+                @foreach ($categories as $category)
+                <option value="{{$category->id}}">{{$category->name}}</option>
+                @endforeach
+            </select>
             <div class="form-group">
               <label for="body">Post Body:</label>
               <textarea name="body" cols="30" rows="10" class="form-control" required></textarea>

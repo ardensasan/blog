@@ -13,6 +13,15 @@
             <label for="slug" style="margin-top: 15px"><strong>Slug:</strong></label>
             <input type="text" name="slug" value="{{$post->slug}}" class="form-control">
 
+            <label for="category_id">Category</label>
+            <select name="category_id" id="" class="form-control">
+                @foreach ($categories as $category)
+                <option value="{{$category->id}}"{{
+                    ($category->name == $post->category->name) ? "selected":""
+                }}>{{$category->name}}</option>
+                @endforeach
+            </select>
+
             <label for="body" style="margin-top: 15px"><strong>Body:</strong></label>
             <textarea name="body" cols="30" rows="10" class="form-control">{{$post->body}}</textarea>
 
