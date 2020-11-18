@@ -9,6 +9,7 @@ use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\PasswordResetController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RegistrationController;
+use App\Http\Controllers\TagController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,3 +45,5 @@ Route::post('rest-password/',[PasswordResetController::class,'resetPasswordConfi
 
 //category routes
 Route::resource('categories', CategoryController::class,['except'=> 'create']);
+//tag routes
+Route::resource('tags', TagController::class,['except'=> 'create']);
