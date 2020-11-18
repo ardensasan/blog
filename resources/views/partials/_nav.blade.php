@@ -17,12 +17,15 @@
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" href="{{route('posts.index')}}">Posts</a>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="{{route('logout')}}">Logout</a>          </li>
+                  <a class="dropdown-item" href="{{route('logout')}}">Logout</a>
                 </div>
             </li>
         </ul>
         @else
-        <a href="{{route('login')}}" class="btn btn-primary">Login</a>
+        <ul class="navbar-nav navbar-right">
+            <li class="nav-item"><a class="nav-link" href="{{route('login')}}"><strong>Login</strong></a></li>
+            <li class="nav-item"><a class="nav-link" href="{{route('register')}}"><strong>Register</strong></a></li>
+        </ul>
         @endif
     </div>
 </nav>

@@ -27,13 +27,13 @@ Route::get('about',[PagesController::class, 'getAbout']);
 Route::get('/',[PagesController::class, 'getIndex'])->name('index');
 
 //register routes
-Route::get('register',[RegistrationController::class,'create'])->name('register.create');
+Route::get('register',[RegistrationController::class,'create'])->name('register');
 Route::post('register',[RegistrationController::class,'store'])->name('register.store');
 
 //authentication routes
 Route::get('logout',[LoginController::class,'getLogout'])->name('logout');
 Route::get('login',[LoginController::class,'getLogin'])->name('login');
-Route::post('login',[LoginController::class,'authenticate'])->name('authenticate');
+Route::post('login',[LoginController::class,'postLogin']);
 
 //password reset routes
 Route::get('forgot-password',[PasswordResetController::class,'forgotPasswordRequest'])->name('password.request');

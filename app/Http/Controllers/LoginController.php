@@ -21,7 +21,7 @@ class LoginController extends Controller
         return view('auth.login');
     }
 
-    public function authenticate(Request $request)
+    public function postLogin(Request $request)
     {
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password], $request->remember))
         {
