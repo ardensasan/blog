@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
@@ -40,3 +41,6 @@ Route::get('forgot-password',[PasswordResetController::class,'forgotPasswordRequ
 Route::post('forgot-password',[PasswordResetController::class,'forgotPasswordEmail'])->name('password.email');
 Route::get('reset-password/{token}',[PasswordResetController::class,'resetPasswordRequest'])->name('password.reset');
 Route::post('rest-password/',[PasswordResetController::class,'resetPasswordConfirm'])->name('password.update');
+
+//category routes
+Route::resource('categories', CategoryController::class,['except'=> 'create']);
