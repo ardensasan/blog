@@ -24,7 +24,8 @@ use App\Http\Controllers\TagController;
 Route::resource('posts', PostController::class);
 Route::get('blog/{slug}', [BlogController::class, 'getSingle'])->where('slug','[\w\d\-\_]+')->name('blog.single');
 Route::get('blog', [BlogController::class, 'getIndex'])->name('blog.index');
-Route::get('contact', [PagesController::class, 'getContact']);
+Route::get('contact', [PagesController::class, 'getContact'])->name('contact.view');
+Route::post('contact', [PagesController::class, 'postContact'])->name('contact.send');
 Route::get('about',[PagesController::class, 'getAbout']);
 Route::get('/',[PagesController::class, 'getIndex'])->name('index');
 
@@ -47,3 +48,5 @@ Route::post('rest-password/',[PasswordResetController::class,'resetPasswordConfi
 Route::resource('categories', CategoryController::class,['except'=> 'create']);
 //tag routes
 Route::resource('tags', TagController::class,['except'=> 'create']);
+//email
+Route::get('send-email', [SendEmailController::class, 'index']);
