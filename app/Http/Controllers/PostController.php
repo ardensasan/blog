@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
 use App\Models\Post;
 use App\Models\Category;
+use App\Models\Tag;
 
 class PostController extends Controller
 {
@@ -33,7 +34,8 @@ class PostController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('posts.create')->with('categories',$categories);
+        $tags = Tag::all();
+        return view('posts.create')->with('categories',$categories)->with('tags',$tags);
     }
 
     /**
@@ -56,6 +58,7 @@ class PostController extends Controller
         $post->body = $request->body;
         $post->category_id = $request->category_id;
         $post->save();
+        $post->tags()->sync($request->tags,false);
         session()->flash('success' , 'The blog post was succesfully created');
         return redirect()->route('posts.show', $post->id);
     }
@@ -82,7 +85,8 @@ class PostController extends Controller
     {
         $post = Post::find($id);
         $categories = Category::all();
-        return view('posts.edit')->with('post',$post)->with('categories',$categories);
+        $tags = Tag::all();
+        return view('posts.edit')->with('post',$post)->with('categories',$categories)->with('tags',$tags);
     }
 
     /**
@@ -94,6 +98,7 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // dd($request);
         $post = Post::find($id);
         if($request->slug == $post->slug){
             $this->validate($request, array(
@@ -116,6 +121,8 @@ class PostController extends Controller
         $post->category_id = $request->category_id;
         $post->body = $request->body;
         $post->save();
+
+        $post->tags()->sync($request->tags,true);
         session()->flash('success' , 'The blog post was succesfully updated');
         return redirect()->route('posts.show', $post->id);
     }

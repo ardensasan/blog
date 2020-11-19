@@ -8,11 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     use HasFactory;
-    public function category(){
-        return $this->belongsTo('App\Models\Category');
-    }
 
     public function tags(){
-        $this->belongsToMany('App\Models\Tag','post_tag','post_id','tag_id');
+        return $this->belongsToMany('App\Models\Tag','post_tag','post_id','tag_id');
+    }
+
+    public function category(){
+        return $this->belongsTo('App\Models\Category');
     }
 }
