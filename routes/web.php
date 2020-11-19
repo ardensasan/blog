@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
@@ -48,5 +49,6 @@ Route::post('rest-password/',[PasswordResetController::class,'resetPasswordConfi
 Route::resource('categories', CategoryController::class,['except'=> 'create']);
 //tag routes
 Route::resource('tags', TagController::class,['except'=> 'create']);
-//email
-Route::get('send-email', [SendEmailController::class, 'index']);
+
+//comment routes
+Route::post('comments/{post_id}',[CommentsController::class,'store'])->name('comments.store');
