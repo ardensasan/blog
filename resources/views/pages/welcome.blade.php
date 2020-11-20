@@ -5,7 +5,7 @@
 <div class="row-mt-200">
     <div class="col-md-12">
     <div class="jumbotron">
-        <h1 class="display-4">Welcom to my blog</h1>
+        <h1 class="display-4">Welcome to my blog</h1>
         <p class="lead">Thank you for visiting</p>
         <p class="lead">
             <a class="btn btn-primary btn-lg" href="#" role="button">Popular Post</a>
@@ -14,7 +14,7 @@
     </div>
 </div><!-- end of header row -->
 <div class="row">
-    <div class="col-md-8" style="margin-left: 15px">
+    <div class="col-md-12" style="margin-left: 15px">
         @foreach($posts as $post)
         <div class="post">
             <h3>{{$post->title}}</h3>
@@ -23,9 +23,6 @@
         </div>
         <hr>
         @endforeach
-    </div>
-    <div class="col-md-3 col-md-offset-1">
-        <h1>Sidebar</h1>
     </div>
 </div>
 @stop
