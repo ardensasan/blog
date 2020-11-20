@@ -7,6 +7,7 @@
 <br>
 <div class="row">
     <div class="col-md-8">
+        <img img src="{{asset('images/'.$post->image)}}" alt="Logo">
         <h1>{{$post->title}}</h1>
         <p class="lead" style="word-wrap: break-word">{{$post->body}}</p>
         <hr>

@@ -7,7 +7,9 @@ use Illuminate\Pagination\Paginator;
 use App\Models\Post;
 use App\Models\Category;
 use App\Models\Tag;
+use Illuminate\Support\Facades\File;
 use Image;
+
 class PostController extends Controller
 {
     public function __construct()
@@ -50,7 +52,8 @@ class PostController extends Controller
             'title' => 'required|max:255',
             'slug' => 'required|alpha_dash|min:5|max:255|unique:posts,slug',
             'category_id' => 'required|integer',
-            'body' =>'required'
+            'body' =>'required',
+            'featured_image' => 'sometimes|image'
         ));
         $post = new Post;
         $post->title = $request->title;
@@ -107,26 +110,27 @@ class PostController extends Controller
     {
         // dd($request);
         $post = Post::find($id);
-        if($request->slug == $post->slug){
-            $this->validate($request, array(
-                'title' => 'required|max:255',
-                'category_id' => 'required|numeric',
-                'body' =>'required'
-
-            ));
-        }else{
-            $this->validate($request, array(
-                'title' => 'required|max:255',
-                'slug' => 'required|alpha_dash|min:5|max:255|unique:posts,slug',
-                'category_id' => 'required|integer',
-                'body' =>'required'
-            ));
-        }
+        $this->validate($request, array(
+            'title' => 'required|max:255',
+            'slug' => "required|alpha_dash|min:5|max:255|unique:posts,slug,$id",
+            'category_id' => 'required|integer',
+            'body' =>'required',
+            'featured_image' => 'sometimes|image'
+        ));
         $post = Post::find($id);
         $post->title = $request->title;
         $post->slug = $request->slug;
         $post->category_id = $request->category_id;
         $post->body = $request->body;
+        if($request->hasFile('featured_image')){
+            $image = $request->featured_image;
+            $filename = time(). '.' . $image->getClientOriginalExtension();
+            $location = public_path('images/'.$filename);
+            Image::make($image)->resize(800,400)->save($location);
+            $oldFileName = $post->image;
+            $post->image = $filename;
+            File::delete(public_path('images/'.$oldFileName));
+        }
         $post->save();
 
         $post->tags()->sync($request->tags,true);
@@ -144,6 +148,7 @@ class PostController extends Controller
     {
         $post = Post::find($id);
         $post->tags()->detach();
+        File::delete(public_path('images/'.$post->image));
         $post->delete();
         session()->flash('success' , 'The post was succesfully deleted');
         return redirect()->route('posts.index');
