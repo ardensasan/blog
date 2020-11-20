@@ -10,13 +10,19 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-md-8 col-md-offset-2">
+    <div class="col-md-12">
         @foreach($post->comments as $comment)
         <div class="comment">
-            <p><strong>Name: </strong>{{$comment->name}}</p>
-            <label for="comment"><strong>Comment:</strong></label>
-            <p>{{$comment->comment}}</p>
-            <br>
+            <div class="author-info">
+                <img src="https://www.gravatar.com/avatar/00000000000000000000000000000000" alt="">
+                <strong>Name: </strong>{{$comment->name}}
+                <br>
+                {{date('M j, Y h:i a',strtotime($comment->created_at))}}
+                <br>
+                <strong>Comment:</strong>
+                <p>{{$comment->comment}}</p>
+                <br>
+            </div>
         </div>
         @endforeach
     </div>

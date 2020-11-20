@@ -7,6 +7,10 @@ use App\Models\Comment;
 use App\Models\Post;
 class CommentsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->except('store');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -72,7 +76,8 @@ class CommentsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $comment = Comment::find($id);
+        return view('comments.edit')->with('comment',$comment);
     }
 
     /**
@@ -84,7 +89,14 @@ class CommentsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, array(
+            'comment' =>'required'
+        ));
+        $comment = Comment::find($id);
+        $comment->comment = $request->comment;
+        $comment->save();
+        session()->flash('success', 'Comment Updated');
+        return redirect()->route('posts.show',$comment->post->id);
     }
 
     /**
@@ -95,6 +107,16 @@ class CommentsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $comment = Comment::find($id);
+        $post_id = $comment->post->id;
+        $comment->delete();
+        session()->flash('success' , 'The comment was succesfully deleted');
+        return redirect()->route('posts.show',$comment->post->id);
+    }
+
+    public function delete($id)
+    {
+        $comment = Comment::find($id);
+        return view('comments.delete')->with('comment',$comment);
     }
 }

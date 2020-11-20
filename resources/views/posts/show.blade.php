@@ -1,5 +1,8 @@
 @extends('main')
 @section('title', "| View Post")
+@section('stylesheets')
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+@stop
 @section('content')
 <br>
 <div class="row">
@@ -52,6 +55,37 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="comment">
+            <h3>Comments:<small> {{$post->comments()->count()}} Total</small></h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Name:</th>
+                        <th>Email:</th>
+                        <th>Comment:</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($post->comments as $comment)
+                    <tr>
+                        <td>{{$comment->name}}</td>
+                        <td>{{$comment->email}}</td>
+                        <td>{{$comment->comment}}</td>
+                        <td>
+                            <a href="{{route('comments.edit',$comment->id)}}" class="btn btn-primary btn-sm"><span class="fa fa-pencil"></span></a>
+                        </td>
+                        <td>
+                            <a href="{{route('comments.destroy',$comment->id)}}" class="btn btn-danger btn-sm"><span class="fa fa-trash"></span></a>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
