@@ -7,7 +7,7 @@ use Illuminate\Pagination\Paginator;
 use App\Models\Post;
 use App\Models\Category;
 use App\Models\Tag;
-
+use Image;
 class PostController extends Controller
 {
     public function __construct()
@@ -57,6 +57,13 @@ class PostController extends Controller
         $post->slug = $request->slug;
         $post->body = $request->body;
         $post->category_id = $request->category_id;
+        if($request->hasFile('featured_image')){
+            $image = $request->featured_image;
+            $filename = time(). '.' . $image->getClientOriginalExtension();
+            $location = public_path('images/'.$filename);
+            Image::make($image)->resize(800,400)->save($location);
+            $post->image = $filename;
+        }
         $post->save();
         $post->tags()->sync($request->tags,false);
         session()->flash('success' , 'The blog post was succesfully created');

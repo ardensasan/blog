@@ -3,6 +3,8 @@
 @section('content')
 <div class="row" style="margin-top: 30px">
     <div class="col-md-12">
+        <img img src="{{asset('images/'.$post->image)}}" alt="Logo">
+        <img src="{{$post->image}}" alt="">
         <h1>{{$post->title}}</h1>
         <p>{{$post->body}}</p>
         <hr>

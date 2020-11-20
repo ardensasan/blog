@@ -8,7 +8,7 @@
     <div class="col-md-8 col-md-offest-2">
         <h1>Create New Post</h1>
         <hr>
-        <form action="{{ route('posts.store') }}" method="POST">
+        <form action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
               <label for="title">Title:</label>
@@ -34,6 +34,11 @@
             </select>
             <br>
             <br>
+            <div class="form-group">
+                <label for="featured_image">Image:</label>
+                <input type="file" name="featured_image" id="fileToUpload">
+            </div>
+
             <div class="form-group">
               <label for="body">Post Body:</label>
               <textarea name="body" cols="30" rows="10" class="form-control" required></textarea>
